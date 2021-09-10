@@ -1,19 +1,24 @@
-<html><body style="width:400px;height:160px;"><h1 style="font-family:'Archer';font-weight:bold;text-align:center;color:#ffffff;font-size:vmax;"></h1></body><script>
+<html><body style="width:1200px;height:40px;"><h1 style="font-family:'Bebas Neue';font-weight:normal;text-align:left;color:#ffffff;font-size:vmax;">&#128363; <span id='swap'></span></span></h1></body><script>
 
 var announcements = [];
 
-announcements.push("Service times are changing!<br>Starting September 12,<br>Sunday services will be at<br>8:30 and 11:00 AM.");
-announcements.push("Redeemer Students<br>Large Group Preview Night<br>September 19<br>redeemindy.org/events");
-announcements.push("Men's Chili Cook Off<br>September 25<br><br>redeemindy.org/events");
-announcements.push("Movie Night<br>Won't You Be My Neighbor?<br>October 2<br>redeemindy.org/events");
-announcements.push("Half Day Women's Retreat<br>October 23<br><br>redeemindy.org/events");
+announcements.push("Service times have changed! &bull; Starting today, Sunday services are at 8:30 and 11:00 AM.");
+announcements.push("Redeemer Students Large Group Preview Night &bull; September 19 &bull; redeemindy.org/events");
+announcements.push("Men's Chili Cook Off &bull; September 25 &bull;  redeemindy.org/events");
+announcements.push("Movie Night &bull; Won't You Be My Neighbor? &bull; October 2 &bull; redeemindy.org/events");
+announcements.push("Half Day Women's Retreat &bull; October 23 &bull;  redeemindy.org/events");
+announcements.push("Service times have changed! &bull; Starting today, Sunday services are at 8:30 and 11:00 AM.");
+announcements.push("Get Connected! &bull; Join a Community Group &bull;  amanda@redeemindy.org");
+announcements.push("Get Connected! &bull; Newcomer's Lunch &bull; October 17 &bull; ben@redeemindy.org");
+announcements.push("Get Connected! &bull; Discovering Redeemer &bull; September 24 & 25 &bull; ben@redeemindy.org");
+announcements.push("Sunday Classes start Today &bull; 10 AM Sundays &bull; See the Fall Preview at redeemindy.org")
 
-var output = document.getElementsByTagName("h1")[0];
+var output = document.getElementById("swap");
 output.innerHTML = announcements[0];
 var announcementLine = 1;
 
 var loop = setInterval(function(){
-	output.innerHTML = announcements[announcementLine];
+	fadeTransition(announcements[announcementLine]);
 	if(announcementLine < announcements.length - 1) {
 		announcementLine++;
 	} else {
@@ -21,6 +26,26 @@ var loop = setInterval(function(){
 	}
 	},10000);
 
-
+function fadeTransition(newText) {
+	var nextOpacity = 3;
+	var fadeOut = setInterval(function(){
+		if (nextOpacity < 0.1) {
+			clearInterval(fadeOut);
+			output.innerHTML = newText;
+			var fadeIn = setInterval(function(){
+				if (nextOpacity > 3) {
+					clearInterval(fadeIn);
+				} else {
+					output.style.opacity = nextOpacity/3;
+					nextOpacity++;
+				}
+			});
+		} else {
+			output.style.opacity = nextOpacity/3;
+			nextOpacity--;
+		}
+		
+	},42)
+}
 
 </script></html>
