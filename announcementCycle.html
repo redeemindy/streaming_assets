@@ -1,52 +1,52 @@
-<html><body style="width:1200px;height:40px;"><h1 style="font-family:'Bebas Neue';font-weight:normal;text-align:left;color:#ffffff;font-size:vmax;"><span id='swap'></span></span></h1></body><script>
+<html><body style="width:1200px;height:40px;overflow:hidden;"><h1 style="font-family:'Bebas Neue';font-weight:normal;text-align:left;color:#ffffff;font-size:vmax;"><span id='swap'></span></span></h1></body><script>
 
-var announcements = [];
-
-announcements.push("Service times have changed! &bull; Sunday services are now at 8:30 and 11:00 AM.");
-announcements.push("Redeemer Students Large Group Preview Night &bull; September 19 &bull; redeemindy.org/events");
-announcements.push("Men's Chili Cook Off &bull; September 25 &bull;  redeemindy.org/events");
-announcements.push("Movie Night &bull; Won't You Be My Neighbor? &bull; October 2 &bull; redeemindy.org/events");
-announcements.push("Half Day Women's Retreat &bull; October 23 &bull;  redeemindy.org/events");
-announcements.push("Storied Lives &bull; Women: carrie@newhopeindianapolis.org &bull; Men: scott@newhopeindianapolis.org")
-announcements.push("Service times have changed! &bull; Sunday services are now at 8:30 and 11:00 AM.");
-announcements.push("Get Connected! &bull; Join a Community Group &bull; amanda@redeemindy.org");
-announcements.push("Get Connected! &bull; Newcomer's Lunch &bull; October 17 &bull; ben@redeemindy.org");
-announcements.push("Get Connected! &bull; Discovering Redeemer &bull; September 24 & 25 &bull; ben@redeemindy.org");
-announcements.push("Sunday School Classes at 10 AM Sundays &bull; See the Fall Preview at redeemindy.org")
-
-var output = document.getElementById("swap");
-output.innerHTML = announcements[0];
-var announcementLine = 1;
-
-var loop = setInterval(function(){
-	fadeTransition(announcements[announcementLine]);
-	if(announcementLine < announcements.length - 1) {
-		announcementLine++;
-	} else {
-		announcementLine = 0;
-	}
-	},10000);
-
-function fadeTransition(newText) {
-	var nextOpacity = 12;
-	var fadeOut = setInterval(function(){
-		if (nextOpacity < 0.1) {
-			clearInterval(fadeOut);
-			output.innerHTML = newText;
-			var fadeIn = setInterval(function(){
-				if (nextOpacity > 12) {
-					clearInterval(fadeIn);
-				} else {
-					output.style.opacity = nextOpacity/12;
-					nextOpacity++;
-				}
-			});
+	var announcements = [];
+	
+	announcements.push("Service times have changed! &bull; Sunday services are now at 8:30 and 11:00 AM.");
+	announcements.push("Redeemer Students Large Group Preview Night &bull; September 19 &bull; redeemindy.org/events");
+	announcements.push("Men's Chili Cook Off &bull; September 25 &bull;  redeemindy.org/events");
+	announcements.push("Movie Night &bull; Won't You Be My Neighbor? &bull; October 2 &bull; redeemindy.org/events");
+	announcements.push("Half Day Women's Retreat &bull; October 23 &bull;  redeemindy.org/events");
+	announcements.push("Storied Lives &bull; Women: carrie@newhopeindianapolis.org &bull; Men: scott@newhopeindianapolis.org")
+	announcements.push("Service times have changed! &bull; Sunday services are now at 8:30 and 11:00 AM.");
+	announcements.push("Get Connected! &bull; Join a Community Group &bull; amanda@redeemindy.org");
+	announcements.push("Get Connected! &bull; Newcomer's Lunch &bull; October 17 &bull; ben@redeemindy.org");
+	announcements.push("Get Connected! &bull; Discovering Redeemer &bull; September 24 & 25 &bull; ben@redeemindy.org");
+	announcements.push("Sunday School Classes at 10 AM Sundays &bull; See the Fall Preview at redeemindy.org")
+	
+	var output = document.getElementById("swap");
+	output.innerHTML = announcements[0];
+	var announcementLine = 1;
+	
+	var loop = setInterval(function(){
+		fadeTransition(announcements[announcementLine]);
+		if(announcementLine < announcements.length - 1) {
+			announcementLine++;
 		} else {
-			output.style.opacity = nextOpacity/12;
-			nextOpacity--;
+			announcementLine = 0;
 		}
-		
-	},21)
-}
-
-</script></html>
+		},10000);
+	
+	function fadeTransition(newText) {
+		var nextOpacity = 12;
+		var fadeOut = setInterval(function(){
+			if (nextOpacity < 0.1) {
+				clearInterval(fadeOut);
+				output.innerHTML = newText;
+				var fadeIn = setInterval(function(){
+					if (nextOpacity > 12) {
+						clearInterval(fadeIn);
+					} else {
+						output.style.opacity = nextOpacity/12;
+						nextOpacity++;
+					}
+				});
+			} else {
+				output.style.opacity = nextOpacity/12;
+				nextOpacity--;
+			}
+			
+		},21)
+	}
+	
+	</script></html>
