@@ -1,4 +1,4 @@
-<html><body style="width:1920px;height:40px;overflow:hidden;"><h1 style="font-family:'Gotham';font-weight:bold;text-align:center;color:#ffffff;font-size:vmax;text-shadow:0px 0px 4px rgba(35, 31, 32, 0.9);text-transform:uppercase;"><span id='swap'></span></h1></body><script>
+<html><style>body {width:1920px;height:40px;overflow:hidden;} h1{font-family:'Gotham';font-weight:bold;text-align:center;color:#ffffff;font-size:vmax;text-shadow:0px 0px 4px rgba(35, 31, 32, 0.9);text-transform:uppercase;} .swap {position:absolute;opacity:0;} .show {opacity:1;animation:fadeIn 0.6s linear;} .hide {opacity:0;animation:fadeOut 0.6s linear;} @keyframes fadeIn { 0% {opacity: 0;} 100% {opacity: 1;}} @keyframes fadeOut { 100% {opacity: 0;} 0% {opacity: 1;}}</style><body><h1 id="swapTarget"></h1></body><script>
 
 	var announcements = [];
 	
@@ -13,39 +13,43 @@
 	announcements.push("Learn about the 4:8 Fund&nbsp;&nbsp;|&nbsp;&nbsp;Mental Health Services for People of Color&nbsp;&nbsp;|&nbsp;&nbsp;redeemindy.org/48-fund");
 	announcements.push("Get Connected! &nbsp;&nbsp;|&nbsp;&nbsp; Sign up for regular email updates at redeemindy.org");
 	
-	var output = document.getElementById("swap");
-	output.innerHTML = announcements[0];
+	var output = document.getElementById("swapTarget");
+	announcements.forEach(function(announcement, index){
+		output.innerHTML = output.innerHTML + "<span class='swap' id='" + index + "'>" + announcement + "</span>"
+	});
 	var announcementLine = 1;
 	
-	var loop = setInterval(function(){
-		fadeTransition(announcements[announcementLine]);
-		if(announcementLine < announcements.length - 1) {
-			announcementLine++;
-		} else {
-			announcementLine = 0;
-		}
-		},10000);
+//<span class='swap' id='a'>SWAP A</span><span class='swap' id='b'>SWAP B</span>
+
+	// var loop = setInterval(function(){
+	// 	fadeTransition(announcements[announcementLine]);
+	// 	if(announcementLine < announcements.length - 1) {
+	// 		announcementLine++;
+	// 	} else {
+	// 		announcementLine = 0;
+	// 	}
+	// 	},10000);
 	
-	function fadeTransition(newText) {
-		var nextOpacity = 12;
-		var fadeOut = setInterval(function(){
-			if (nextOpacity < 0.1) {
-				clearInterval(fadeOut);
-				output.innerHTML = newText;
-				var fadeIn = setInterval(function(){
-					if (nextOpacity > 12) {
-						clearInterval(fadeIn);
-					} else {
-						output.style.opacity = nextOpacity/12;
-						nextOpacity++;
-					}
-				});
-			} else {
-				output.style.opacity = nextOpacity/12;
-				nextOpacity--;
-			}
+	// function fadeTransition(newText) {
+	// 	var nextOpacity = 12;
+	// 	var fadeOut = setInterval(function(){
+	// 		if (nextOpacity < 0.1) {
+	// 			clearInterval(fadeOut);
+	// 			output.innerHTML = newText;
+	// 			var fadeIn = setInterval(function(){
+	// 				if (nextOpacity > 12) {
+	// 					clearInterval(fadeIn);
+	// 				} else {
+	// 					output.style.opacity = nextOpacity/12;
+	// 					nextOpacity++;
+	// 				}
+	// 			});
+	// 		} else {
+	// 			output.style.opacity = nextOpacity/12;
+	// 			nextOpacity--;
+	// 		}
 			
-		},21)
-	}
+	// 	},21)
+	// }
 	
 	</script></html>
