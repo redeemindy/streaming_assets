@@ -44,4 +44,8 @@ A "commit" is a set of changes you're uploading to GitHub.
 1. In GitHub Desktop, click "Commit to main." You may also type a commit message in the commit message box, which is right above the one labeled "Description," but that's not strictly necessary.
 2. Click the "Push to origin" button.
 
-* In GitHub Desktop
+#### Fixing a Mistake
+
+If you've made a mistake and saved the file, you can easily revert to the original (even if you can't Undo it) by right-clicking the filename in GitHub Desktop and choosing "Discard Changes."
+
+If you need to go back further, you're getting into more complicated revert scenarios. Probably a more effective way to get an earlier version would be to scroll back in the History tab to the change you want to revert to, copy the pieces you need from the change preview pane, and paste them into the file on Visual Studio Code.
