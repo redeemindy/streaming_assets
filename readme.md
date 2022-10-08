@@ -1,6 +1,6 @@
 ## Redeemer Presbyterian Indianapolis Streaming Assets
 
-We use GitHub to maintain our streaming assets. This servics allows us to track changes, roll back things that break stuff, and work remotely when needed.
+We use GitHub to maintain our streaming assets. This service allows us to track changes, roll back things that break stuff, and work remotely when needed.
 
 ### Files in this repo:
 
