@@ -1,2 +1,2 @@
-Background: #3E6CA6
-Text: #E1E1D9 (or #ffffff)
+Background: #F3E9DD
+Text: #0168B7
