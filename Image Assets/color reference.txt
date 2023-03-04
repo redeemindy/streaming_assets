@@ -1,2 +1,2 @@
-Background: #D1C6B0
-Text: #784D30
+Background: #A6A298
+Text: #464541
