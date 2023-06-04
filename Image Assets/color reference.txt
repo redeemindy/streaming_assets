@@ -1,3 +1,3 @@
 Background: #AFA7A8
-Text: #75869E
+Text: #75869E (val up to a9c3e5 for transparent bgrd)
 Accent: #FFFFFF
