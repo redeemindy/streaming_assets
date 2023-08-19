@@ -1,3 +1,3 @@
-Background: #002944
-Text: #feefd2
-Accent: #FFFFFF
+Background: #AF2300
+Text: #F8EBD8
+Accent: #4B3035
