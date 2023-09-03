@@ -1,0 +1,1 @@
+powershell.exe -executionpolicy bypass -file "C:\Users\Stream Desk\Documents\GitHub\streaming_assets\scripts\KillObsAndLogoff.ps1"
