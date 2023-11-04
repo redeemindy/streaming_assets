@@ -1,3 +1,4 @@
-Background: #BDD4E6
-Text: #FEEFD2
-Accent: #E59E00
+Background: #130604
+Text Light: #FFFAEB
+Text Dark: #2D3034
+Accent: #EB3236
