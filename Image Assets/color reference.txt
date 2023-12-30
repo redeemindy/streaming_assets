@@ -1,0 +1,4 @@
+Background: #-
+Text Light: #FEE69D
+Text Dark: #-
+Accent: #-
