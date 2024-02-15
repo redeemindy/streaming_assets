@@ -1,5 +1,5 @@
-Background: #F5BF9B
-Text Light: #FFECE0
-Text Dark: #5B2703 / #7A421B, opacity 168/256 (66%)
-Accent: #EF9336
-Tint: #7B421C
+Background: #-
+Text Light: #-
+Text Dark: #- / #-, opacity -/-
+Accent: #-
+Tint: #-
