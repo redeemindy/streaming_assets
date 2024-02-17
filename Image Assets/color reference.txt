@@ -1,5 +1,5 @@
-Background: #-
-Text Light: #-
-Text Dark: #- / #-, opacity -/-
-Accent: #-
+Background: #7199A1
+Text Light: #FCED8C (overlay blend mode)
+Text Dark: #0A7AB2
+Accent: #FFFFFF
 Tint: #-
