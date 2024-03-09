@@ -1,4 +1,4 @@
-<html>
+<!DOCTYPE html>
 	<head>
 		<style>
 			body {
@@ -23,13 +23,19 @@
 			}
 			#swap {
 				display: block;
-				position: absolute;
-				top: 50%;
-				transform: translateY(-50%);
 				width: 800px;
 				line-height: 120%;
+				height:225px;
 			}
-			#swap::first-line {
+			.announcement {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				width: 100%;
+				opacity: 0;
+			}
+			.announcement::first-line {
 				font-size: 32px;
 				line-height: 150%;
 				color:rgba(252, 237, 140, 1);
@@ -41,8 +47,8 @@
 			}
 		</style>
 	</head>
-	<body><h1><span id='swap'></span></h1></body><script>
-
+	<body><h1><div id='swap'></div></h1></body><script>
+		
 	var announcements = [];
 	// Always
 	announcements.push("10 <strong>March</strong> 2024");
@@ -68,39 +74,55 @@
 	//announcements.push("<strong>Youth Group this evening</strong><br>Middle School &amp; High School &bull; 3-5pm in the gym<br>High school hang out at <strong>Greek's</strong> on 16th after<br>Email <strong>marypaxton@redeemindy.org</strong><br>or <strong>nicholas@redeemindy.org</strong> for details");
 	//announcements.push("<strong>Church Plant Newsletter</strong><br>Get updates from Ben Hein about the<br>Redeemer church plant on the Near Westside.<br>Subscribe at <strong>redeemindy.org/sunday-announcements</strong>");
 	
-	var output = document.getElementById("swap");
-	output.innerHTML = announcements[0];
-	var announcementLine = 1;
-	
-	var loop = setInterval(function(){
-		fadeTransition(announcements[announcementLine]);
-		if(announcementLine < announcements.length - 1) {
-			announcementLine++;
-		} else {
-			announcementLine = 0;
-		}
-		},10000);
-	
-	function fadeTransition(newText) {
-		var nextOpacity = 12;
-		var fadeOut = setInterval(function(){
-			if (nextOpacity < 0.1) {
-				clearInterval(fadeOut);
-				output.innerHTML = newText;
-				var fadeIn = setInterval(function(){
-					if (nextOpacity > 12) {
-						clearInterval(fadeIn);
-					} else {
-						output.style.opacity = nextOpacity/12;
-						nextOpacity++;
-					}
-				});
-			} else {
-				output.style.opacity = nextOpacity/12;
-				nextOpacity--;
+//LOOPING AND DISPLAY CODE BELOW THIS LINE
+
+	//Levers to pull:
+	var startingAnnouncement = 0;
+	var secondsHold = 10;
+	var transitionSpeed = 0.5;
+	var debugMode = false;
+
+	//The magic:
+	var elements = [];
+	var swap = document.getElementById('swap');
+	announcements.forEach((a, i) => {
+		var el = document.createElement("div");
+			el.id = i;
+			el.className = "announcement";
+			el.innerHTML = a;
+			if (debugMode) {
+				el.style = "position:relative;opacity:1;color:#000000;transform:translate(-50%,0);border:1px solid red;height:225px;"
+				document.body.style = "overflow:auto;"
 			}
-			
-		},21)
+		elements.push(el);
+		swap.appendChild(el);
+	});
+
+	function transition(next, current){
+		if (current) { current.style = "transition: opacity " + transitionSpeed + "s ease-in-out;opacity:0;"; }
+		next.style = "transition: opacity " + transitionSpeed + "s ease-in-out;opacity:1;";
+	}
+
+	var currentAnnouncement = startingAnnouncement;
+	function loop(){
+		setInterval(() => {
+			var nextAnnouncement = currentAnnouncement + 1;
+			if (nextAnnouncement > elements.length - 1) {
+				nextAnnouncement = 0;
+			}
+			transition(elements[nextAnnouncement], elements[currentAnnouncement]);
+			currentAnnouncement = nextAnnouncement;
+		}, (secondsHold * 1000));
+	}
+
+	//Hey Presto:
+
+	if(!debugMode){ 
+		console.log("Looping " + elements.length + " announcements every " + secondsHold + " seconds with a " + transitionSpeed + " second transition, starting with #" + (startingAnnouncement + 1));
+		transition (elements[startingAnnouncement]);
+		loop(); 
+	} else {
+		console.log("Debug mode! When turned off, " + elements.length + " announcements will loop every " + secondsHold + " seconds with a " + transitionSpeed + " second transition, starting with #" + (startingAnnouncement + 1));
 	}
 	
 	</script></html>
