@@ -1,13 +1,5 @@
-<<<<<<< Updated upstream
-Background: #BA9AC4
-Text Light: rgb(245,226,238) (<<shadow)
-Text Dark: #7A328A 
-Accent: #ffffff
-Tint: #C079D0
-=======
-Background: #0A0B0C
-Text Light: #F7F5B1
-Text Dark: #
-Accent: #ED4E2D
-Tint: #
->>>>>>> Stashed changes
+Background: #F1EADA
+Text Light: #718B87
+Text Dark: #284F49 
+Accent: #EAE7E0
+Tint: # -
