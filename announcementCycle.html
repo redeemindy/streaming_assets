@@ -55,16 +55,17 @@
 		
 	var announcements = [];
 	// Always
-	announcements.push("6 <strong>October</strong> 2024");
+	announcements.push("13 <strong>October</strong> 2024");
 	announcements.push("Miss an announcement?<br>Visit <strong>redeemindy.org/events</strong>"); 
 
 	//This week		
-	announcements.push("<strong>Leadership Nominations</strong><br>Deadline: <strong>Next Sunday</strong>, 10/13<br>Members, read our guide to nominating candidates<br>for Elder, Deacon, Deaconess,<br>and Women's Shepherding Team<br>at <strong>redeemindy.org/leader-nomination-guide</strong>");
-	announcements.push("<strong>Youth Group Central</strong><br>Tonight &bull; 3-4:30pm");
+	announcements.push("<strong>Leadership Nominations</strong><br>Deadline: <strong>Tonight</strong>, 11:59pm<br>Members, read our guide to nominating candidates<br>for Elder, Deacon, Deaconess,<br>and Women's Shepherding Team<br>at <strong>redeemindy.org/leader-nomination-guide</strong>");
 	announcements.push("<strong>Redeemer Students</strong> Event Calendar<br>Click &ldquo;Youth Group&rdquo; at <strong>redeemindy.org/events</strong><br>or sign up for text notifications<br>by texting &ldquo;<strong>redeemerstudents</strong>&rdquo; to 97000");
 	announcements.push("<strong>Discovering Redeemer</strong><br>for <strong>4th-7th grade students</strong><br>October 20 &bull; 12:30-4pm<br>For more info or to sign up, go to<br><strong>redeemindy.org/events</strong>");
 	announcements.push("<strong>Storied Lives</strong> for Men<br>Explore stories from your past for freedom in the present<br>Groups meet on Tuesdays starting in November<br>Email <strong>markvanest@gmail.com</strong><br>or <strong>carrie@newhopeindianapolis.org</strong> for more info<br>or register at <strong>redeemindy.org/events</strong>");
-	announcements.push("<strong>Flood Relief Support</strong><br>Help those affected by Hurricane Helene<br>by donating or volunteering at<br><strong>pcamna.org/hurricane-helene</strong>");
+	announcements.push("<strong>Trunk or Treat</strong> at 16 Park<br>October 26 &bull; 3:30-5:30pm<br>Help us reach out to our neighbors down the street.<br>See volunteer needs and sign up at<br><strong>redeemindy.org/events</strong>");
+	announcements.push("<strong>Freezer Meal Assembly Party</strong><br>October 27 &bull; 3-5pm<br>Laughter, Teamwork, and meals for neighbors in need.<br>Learn more or RSVP<br>to <strong>julianne@redeemindy.org</strong>");
+	announcements.push("<strong>Flood Relief Support</strong><br>Help those affected by Hurricanes Helene and Milton<br>by donating or volunteering at<br><strong>pcamna.org/hurricane-helene</strong>");
 	//announcements.push("Miss an announcement?<br>Visit <strong>redeemindy.org/events</strong>"); 
 	//announcements.push("<strong>Now Hiring</strong>: Assistant Director of Operations<br>The Operations Team manages finance, HR,<br>IT, Communications, &amp; Facilities<br>This is a full-time role focusing on finance<br>Visit <strong>redeemindy.org/rpc-job-openings</strong> or contact<br><strong>ben@redeemindy.org</strong> for more info");
 	//announcements.push("Now Hiring: <strong>Office Manager</strong><br>for New Hope Counseling<br>Part-time administrative support &amp; supervision<br>For more information or to apply,<br>email <strong>jeff.nottingham@newhopeindianapolis.org</strong>");
@@ -93,7 +94,7 @@
 			el.className = "announcement";
 			el.innerHTML = a;
 			if (debugMode) {
-				el.style = "position:relative;opacity:1;transform:translate(-50%,0);border:1px solid red;height:225px;"
+				el.style = "position:relative;opacity:1;/*transform:translate(0,0);*/border:1px solid red;height:340px;width:1200px;"
 				document.body.style = "overflow:auto;"
 			}
 		elements.push(el);
