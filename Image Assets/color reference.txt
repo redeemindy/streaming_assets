@@ -1,4 +1,4 @@
-Background: #F5C652
+Background: #DF514B
 Text Light: #ffffff
 Text Dark: #000000
 Accent: # -
