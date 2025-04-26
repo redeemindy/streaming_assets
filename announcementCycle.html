@@ -52,6 +52,12 @@
 				font-weight: 900;
 				font-style: italic;
 			}
+			s {
+				text-decoration: underline;
+				text-decoration-thickness: 5px;
+				text-underline-offset: -13px;
+				text-decoration-skip-ink: none;
+			}
 		</style>
 	</head>
 	<body><h1><div id='swap'></div></h1></body><script>
@@ -60,6 +66,10 @@
 	// Always
 	announcements.push("27 April 2025");
 	announcements.push("Miss an announcement?<br>Get connected at <strong>redeemindy.org/events</strong>");		
+	announcements.push("<strong>Middle School <s>Youth Group</s> Central</strong><br>Tonight &bull; 3-4:30pm &bull; Redeemer<br>Games &bull; Discussions &bull; Friends");
+	announcements.push("<strong>High School Small Groups</strong><br>Tonight &bull; 7-8:30pm<br>Email <strong>students@redeemindy.org</strong> for more info");
+	announcements.push("<strong>Redeemer Students</strong> Event Calendar<br>Click &ldquo;Youth Group&rdquo; at <strong>redeemindy.org/events</strong><br>or sign up for text notifications<br>by texting &ldquo;<strong>redeemerstudents</strong>&rdquo; to 97000");
+	announcements.push("Shepherd Community Center <strong>Engagement Day</strong><br>May 3 &bull; 9am-1:30pm<br>Join our partner ministry for service projects,<br>family activities, tours, and more!<br>Visit <strong>redeemindy.org/events</strong> for more info or to register");
 
 	announcements.push("<strong>Kids Club</strong> | Amazing World Adventure<br>June 2-5 &bull; 5-7pm &bull; Register by May 11<br>Preschool and Elementary children! Join us this summer<br>for crafts, games, stories, and dinner!<br>Register at <strong>redeemindy.org/events</strong><br>&nbsp;");
 	announcements.push("<strong>Kids Club</strong> | Amazing World Adventure<br>&nbsp;<br>Volunteers Needed!<br>Adults and 6th&ndash;12th Grade Student Leaders<br>Get more info or register at<br><strong>redeemindy.org/events</strong>");
@@ -71,7 +81,7 @@
 	//often, but not today
 	//announcements.push("<strong>Newcomer's Lunch</strong><br>Today &bull; 12:30pm<br>New? New-ish?<br>Come this afternoon to meet people<br>and learn about Redeemer.<br><em>Childcare provided</em>");
 	//announcements.push("<strong>Youth Group Central</strong><br>Tonight &bull; 3-4:30pm");
-	//announcements.push("<strong>High School Small Groups</strong><br>Tonight &bull; 7-8:15pm<br>Email <strong>students@redeemindy.org</strong> for more info");
+	//announcements.push("<strong>High School Small Groups</strong><br>Tonight &bull; 7-8:30pm<br>Email <strong>students@redeemindy.org</strong> for more info");
 	//announcements.push("<strong>Redeemer Students</strong> Event Calendar<br>Click &ldquo;Youth Group&rdquo; at <strong>redeemindy.org/events</strong><br>or sign up for text notifications<br>by texting &ldquo;<strong>redeemerstudents</strong>&rdquo; to 97000");
 	//announcements.push("Stay up to date with all of our upcoming events!<br>Visit <strong>redeemindy.org/events</strong>");
 	//announcements.push(" <strong>First Friday</strong><br>at the Harrison Center &bull; This Friday &bull; 6-9pm<br>Gallery openings, studio visits, and more!<br>Learn more at <strong>harrisoncenter.org</strong>");
@@ -84,7 +94,7 @@
 	var startingAnnouncement = 0;
 	var secondsHold = 10;
 	var transitionSpeed = 0.5;
-	var debugMode = false;
+	var debugMode = true;
 
 	//The magic:
 	var elements = [];
