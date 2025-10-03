@@ -1,5 +1,5 @@
-Background: #000000
+Background: #ffd46d
 Text Light: #ffffff
-Text Dark: #2a323c
-Accent: #
+Text Dark: #377c9c
+Accent: #006b4d
 Tint: # -
