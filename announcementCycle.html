@@ -1,78 +1,94 @@
 <!DOCTYPE html>
-	<head>
-		<style>
-			body {
-				width: 1000px;
-				height: 300px;
-				background-color: rgba(0, 0, 0, 0.00);
-				margin: 0px auto;
-				overflow: hidden;
-			}
-			h1 {
-				font-family: 'Bookmania', 'Bookmania Semibold';
-				width: 1000px;
-				height: 300px;
-				display: block;
-				position: relative;
-				margin: auto 0px;
-				font-weight: 700;
-				text-align: center;
-				color: #377c9c;
-				font-size: 25px;
-				text-shadow: 3px 3px 1px rgba(55, 124, 156, 0.45);
-			}
-			#swap {
-				display: block;
-				width: 1000px;
-				line-height: 120%;
-				height:300px;
-			}
-			.announcement {
-				position: absolute;
-				top: 50%;
-				left: 50%;
-				transform: translate(-50%, -50%);
-				width: 100%;
-				opacity: 0;
-			}
-			.announcement::first-line {
-				font-family: 'Bookmania', 'Bookmania Semibold';
-				font-size: 40px;
-				line-height: 150%;
-				color: #377c9c;
-			}
-			.announcement::first-line strong {
-				font-weight:900;
-				font-family: 'Bookmania', 'Bookmania Semibold';
-			}
-			strong {
-				font-weight: 900;
-				font-family: 'Bookmania', 'Bookmania Semibold';
-				color: #377c9c;
-				text-shadow: 4px 4px 1px rgba(55, 124, 156, 0.45);
-			}
-			em {
-				font-weight: 700;
-				font-style: italic;
-				font-family: 'Bookmania', 'Bookmania Semibold';
-			}
-			em strong, strong em {
-				font-family: 'Bookmania', 'Bookmania Semibold';
-				font-weight: 900;
-			}
-			s {
-				text-decoration: underline;
-				text-decoration-thickness: 4px;
-				text-underline-offset: -11px;
-				text-decoration-skip-ink: none;
-			}
-		</style>
-	</head>
-	<body><h1><div id='swap'></div></h1></body><script>
-		
+
+<head>
+	<style>
+		body {
+			width: 1000px;
+			height: 300px;
+			background-color: rgba(0, 0, 0, 0.00);
+			margin: 0px auto;
+			overflow: hidden;
+		}
+
+		h1 {
+			font-family: 'Bookmania', 'Bookmania Semibold';
+			width: 1000px;
+			height: 300px;
+			display: block;
+			position: relative;
+			margin: auto 0px;
+			font-weight: 700;
+			text-align: center;
+			color: #377c9c;
+			font-size: 25px;
+			text-shadow: 3px 3px 1px rgba(55, 124, 156, 0.45);
+		}
+
+		#swap {
+			display: block;
+			width: 1000px;
+			line-height: 120%;
+			height: 300px;
+		}
+
+		.announcement {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			width: 100%;
+			opacity: 0;
+		}
+
+		.announcement::first-line {
+			font-family: 'Bookmania', 'Bookmania Semibold';
+			font-size: 40px;
+			line-height: 150%;
+			color: #377c9c;
+		}
+
+		.announcement::first-line strong {
+			font-weight: 900;
+			font-family: 'Bookmania', 'Bookmania Semibold';
+		}
+
+		strong {
+			font-weight: 900;
+			font-family: 'Bookmania', 'Bookmania Semibold';
+			color: #377c9c;
+			text-shadow: 4px 4px 1px rgba(55, 124, 156, 0.45);
+		}
+
+		em {
+			font-weight: 700;
+			font-style: italic;
+			font-family: 'Bookmania', 'Bookmania Semibold';
+		}
+
+		em strong,
+		strong em {
+			font-family: 'Bookmania', 'Bookmania Semibold';
+			font-weight: 900;
+		}
+
+		s {
+			text-decoration: underline;
+			text-decoration-thickness: 4px;
+			text-underline-offset: -11px;
+			text-decoration-skip-ink: none;
+		}
+	</style>
+</head>
+
+<body>
+	<h1>
+		<div id='swap'></div>
+	</h1>
+</body>
+<script>
+
 	var announcements = [];
 	// Always
-	announcements.push("26 <strong>October</strong> 2025");
 	//announcements.push("Community Life<br>Join in at <strong>redeemindy.org/events</strong>!");	
 
 	announcements.push("<strong>Mercy Movement</strong> is here!<br>Find more ways to volunteer<br>at <strong>redeemindy.org/events</strong>");
@@ -91,7 +107,7 @@
 	announcements.push("<strong>Newcomer's Lunch</strong><br><strong>Next Sunday</strong> &bull; 12:30pm<br>New? New-ish?<br>Come to meet people and learn about Redeemer.<br><em>Childcare provided. RSVP for childcare</em><br><em>at <strong>redeemindy.org/events</strong>.</em>");
 	announcements.push("<strong>Advent Workshop</strong><br>November 9 &bull; 9:30am - 1pm &bull; All ages!<br>An annual Redeemer tradition!<br>Join us as we make this year's Liturgical Art project.<br><em>Art skills not required&mdash;though you may want to wear clothes that can get messy!</em>");
 	announcements.push("Young Life <strong>Matching Grant</strong><br>Students from Herron High School meet several times a month<br>for fellowship, bible study, and more.<br> This program has been granted a matching gift fund of $10,000<br>if they can raise $2,000 in new monthly donors by the end of October.<br>For more info, email <strong>jennierader@gmail.com</strong>");
-	
+
 	//announcements.push("<span style='font-weight: 700;font-size: 25px;line-height: 100%;'>Need more Hope?</span><br><strong style='font-weight: 900;font-size: 40px;line-height:150%;'>Hope Pres Blooomington</strong><br>is replanting!<br>Join us in supporting this congregation<br>as they relaunch this fall.<br>Email <strong>brandon@hopebtown.org</strong> for more info<br>or give at <strong>give.pcamna.org/to/1942</strong>");
 
 
@@ -106,8 +122,8 @@
 	//announcements.push("<strong>Join the Stream Team!</strong><br>If you're watching this, we don't have to tell you<br>how impactful the Stream Team is.<br>If you're an adult or high school student, we need your help!<br>This is a creative opportunity that requires no experience, just interest;<br>if that's you or someone you know,<br>email <strong>davidatwell@gmail.com</strong>.<br>");	
 	//announcements.push(" <strong>First Friday</strong><br>at the Harrison Center &bull; This Friday &bull; 6-9pm<br>Gallery openings, studio visits, and more!<br>Learn more at <strong>harrisoncenter.org</strong>");
 	//announcements.push("<strong>First Friday</strong> Volunteers Needed!<br>This Friday &bull; 6-9pm<br>Help out from 5:45-7:30pm or 7:15-9pm<br>More info or volunteer at<br><strong>harrisoncenter.org/volunteers</strong>");
-	
-//LOOPING AND DISPLAY CODE BELOW THIS LINE
+
+	//LOOPING AND DISPLAY CODE BELOW THIS LINE
 
 	//Levers to pull:
 	var startingAnnouncement = 0;
@@ -118,26 +134,27 @@
 	//The magic:
 	var elements = [];
 	var swap = document.getElementById('swap');
+	announcements.unshift(dateString());
 	announcements.forEach((a, i) => {
 		var el = document.createElement("div");
-			el.id = i;
-			el.className = "announcement";
-			el.innerHTML = a;
-			if (debugMode) {
-				el.style = "position:relative;opacity:1;/*transform:translate(0,0);*/border:1px solid red;height:340px;width:1200px;"
-				document.body.style = "overflow:auto;"
-			}
+		el.id = i;
+		el.className = "announcement";
+		el.innerHTML = a;
+		if (debugMode) {
+			el.style = "position:relative;opacity:1;/*transform:translate(0,0);*/border:1px solid red;height:340px;width:1200px;"
+			document.body.style = "overflow:auto;"
+		}
 		elements.push(el);
 		swap.appendChild(el);
 	});
 
-	function transition(next, current){
+	function transition(next, current) {
 		if (current) { current.style = "transition: opacity " + transitionSpeed + "s ease-in-out;opacity:0;"; }
 		next.style = "transition: opacity " + transitionSpeed + "s ease-in-out;opacity:1;";
 	}
 
 	var currentAnnouncement = startingAnnouncement;
-	function loop(){
+	function loop() {
 		setInterval(() => {
 			var nextAnnouncement = currentAnnouncement + 1;
 			if (nextAnnouncement > elements.length - 1) {
@@ -148,14 +165,162 @@
 		}, (secondsHold * 1000));
 	}
 
+	function dateString(dateIn) {
+		if (!dateIn) { dateIn = new Date(); } else { dateIn = new Date(dateIn); }
+		var soonestSunday = soonestDayOfWeek(dateIn, "Sunday");
+		//NOTE: Months in JavaScript are zero-indexed, so January is 0 and December is 11. I'm subtracting 1 to make the month literals below so that it's more clear to humans what's going on (you'll notice that it's checking to see if Christmas is in month `12 - 1`. That's 11, which is December.)
+
+		//is it Advent? (Advent can't fall earlier than 11/27 or later than 12/24)
+		if ((soonestSunday.getMonth() == 11 - 1 && soonestSunday.getDate() >= 27) || (soonestSunday.getMonth() == 12 - 1 && soonestSunday.getDate() <= 23)){
+			return stringifyDate(soonestSunday, "Advent");
+		}
+
+		//is it Christmas or Christmas Eve?
+		if (dateIn.getMonth() == 12 - 1) { 
+			if (dateIn.getDate() <= 24 && 24 <= soonestSunday.getDate()){ //next event is Christmas Eve
+				return stringifyDate(new Date(dateIn.getFullYear(), 12 - 1, 24), "Christmas Eve"); 
+			}
+			if (dateIn.getDate() == 25){ //technically this isn't exactly right, but this is only going to be relevant on Christmas Day itself; and honestly if you're looking at this on Christmas and you're NOT streaming, go home! Be with your family!
+				return stringifyDate(dateIn, "Christmas");
+			}
+		}
+
+		//is it Christmastide? (for our purposes Christmastide is between December 25 and Epiphany, which falls on the first Sunday after January 1--but never *ON* January 1)
+		if((soonestSunday.getMonth() == 12 - 1 && soonestSunday.getDate() > 25) || (soonestSunday.getMonth() == 1 - 1 && soonestSunday.getDate() <= 1)){
+			return stringifyDate(soonestSunday, "Christmastide");
+		}
+
+		//is it Epiphany? (for our purposes Epiphany is the first Sunday after January 1 that isn't January 1; meaning that it has to fall on 1/2 through 1/8)
+		if(soonestSunday.getMonth() == 1 - 1 && soonestSunday.getDate() >= 2 && soonestSunday.getDate() <= 8){
+			return stringifyDate(soonestSunday, "Epiphany");
+		}
+
+		//Lent, Holy Week, Easter, and Pentecost:
+		var ashWed = getEaster(dateIn.getFullYear());
+		ashWed.setDate(ashWed.getDate() - 46);
+		var palmSun = getEaster(dateIn.getFullYear());
+		palmSun.setDate(palmSun.getDate() - 7);
+		var maundyThu = getEaster(dateIn.getFullYear());
+		maundyThu.setDate(maundyThu.getDate() - 3);
+		var goodFri = getEaster(dateIn.getFullYear());
+		goodFri.setDate(goodFri.getDate() - 2);
+		var easter = getEaster(dateIn.getFullYear());
+		//Technically Pentecost is 50 days after Easter, but it's celebrated on the Sunday before (so, one day early)
+		var pentecost = getEaster(dateIn.getFullYear());
+		pentecost.setDate(pentecost.getDate() + 49);
+
+		//is it Ash Wednesday? (46 days before Easter)
+		if (ashWed.toISOString().split("T")[0] <= soonestSunday.toISOString().split("T")[0] && dateIn.toISOString().split("T")[0] <= ashWed.toISOString().split("T")[0]){
+			return stringifyDate(ashWed, "Ash Wednesday");
+		}
+
+		//is it Lent? (between Ash Wednesday and Palm Sunday)
+		if (ashWed.toISOString().split("T")[0] <= soonestSunday.toISOString().split("T")[0] && soonestSunday.toISOString().split("T")[0] < palmSun.toISOString().split("T")[0]){
+			return stringifyDate(soonestSunday, "Lent");
+		}
+
+		//is it Palm Sunday? (Sun before Easter)
+		if (soonestSunday.toISOString().split("T")[0] == palmSun.toISOString().split("T")[0]) {
+			return stringifyDate(palmSun, "Palm Sunday");
+		}
+
+		//is it Mon-Tue-Wed of Holy Week? (we don't usually stream this)
+		if (soonestSunday.toISOString().split("T")[0] > maundyThu.toISOString().split("T")[0] && dateIn.toISOString().split("T")[0] < maundyThu.toISOString().split("T")[0]) {
+			return stringifyDate(dateIn, "Holy Week");
+		}
+
+		//is it Maundy Thursday? (Thurs before Easter)
+		//(we don't usually do a Maundy Thursday stream either)
+		if (dateIn.toISOString().split("T")[0] == maundyThu.toISOString().split("T")[0]) {
+			return stringifyDate(maundyThu, "Maundy Thursday");
+		}
+
+		//is it Good Friday? (Fri before Easter)
+		if(dateIn.toISOString().split("T")[0] == goodFri.toISOString().split("T")[0]) {
+			return stringifyDate(goodFri, "Good Friday");
+		}
+
+		//is it Easter Sunday?
+		if(soonestSunday.toISOString().split("T")[0] == easter.toISOString().split("T")[0]) {
+			//if you want to call it "Resurrection Sunday," just change "Easter" in the line below
+			return stringifyDate(soonestSunday, "Easter Sunday");
+		}
+
+		//is it Eastertide? (50 days after Easter, until Pentecost)
+		if(soonestSunday.toISOString().split("T")[0] > easter.toISOString().split("T")[0] && soonestSunday.toISOString().split("T")[0] < pentecost.toISOString().split("T")[0]) {
+			return stringifyDate(soonestSunday, "Eastertide");
+		}
+
+		//is it Pentecost?
+		if(soonestSunday.toISOString().split("T")[0] == pentecost.toISOString().split("T")[0]) {
+			return stringifyDate(soonestSunday, "Pentecost");
+		}
+
+		//just a normal Sunday, then ("Ordinary Time")
+		return stringifyDate(soonestSunday);
+	}
+
+	function stringifyDate(day, special){
+		const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+		var dateString = day.getDate() + " <strong>" + months[day.getMonth()] + "</strong> " + day.getFullYear();
+
+		if (special) {
+			return "<strong>" + special + "</strong><br>" + dateString;
+		} else {
+			return dateString;
+		}
+	}
+
+	function soonestDayOfWeek(dateIn, dayToFind) {
+		var day = new Date(dateIn);
+		const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+		if(!dayToFind || days.indexOf(dayToFind) < 0) { dayToFind = "Sunday"; }
+		day.setMinutes(1);
+		day.setHours(0);
+		var dayOfWeek = day.getDay();
+		if (dayOfWeek != days.indexOf(dayToFind)) {
+			var daysToAdd = days.indexOf(dayToFind) - dayOfWeek;
+			if (daysToAdd < 0) { daysToAdd += 7; }
+			day.setDate(day.getDate() + daysToAdd);
+		}
+
+		return new Date(day.getFullYear(), day.getMonth(), day.getDate());
+	}
+
+	function getEaster(year) {
+		const a = year % 19;
+		const b = Math.floor(year / 100);
+		const c = year % 100;
+		const d = Math.floor(b / 4);
+		const e = b % 4;
+		const f = Math.floor((b + 8) / 25);
+		const g = Math.floor((b - f + 1) / 3);
+		const h = (19 * a + b - d - g + 15) % 30;
+		const i = Math.floor(c / 4);
+		const k = c % 4;
+		const l = (32 + 2 * e + 2 * i - h - k) % 7;
+		const m = Math.floor((a + 11 * h + 22 * l) / 451);
+		const n = h + l - 7 * m + 114;
+		const month = Math.floor(n / 31);
+		const day = (n % 31) + 1;
+
+		// Month is 1-indexed (1 for January, 12 for December)
+		// JavaScript Date object months are 0-indexed, so subtract 1
+		return new Date(year, month - 1, day);
+	}
+
 	//Hey Presto:
 
-	if(!debugMode){ 
+	if (!debugMode) {
 		console.log("Looping " + elements.length + " announcements every " + secondsHold + " seconds with a " + transitionSpeed + " second transition, starting with #" + (startingAnnouncement + 1));
-		transition (elements[startingAnnouncement]);
-		loop(); 
+		transition(elements[startingAnnouncement]);
+		loop();
 	} else {
 		console.log("Debug mode! When turned off, " + elements.length + " announcements will loop every " + secondsHold + " seconds with a " + transitionSpeed + " second transition, starting with #" + (startingAnnouncement + 1));
 	}
-	
-	</script></html>
+
+</script>
+
+</html>
