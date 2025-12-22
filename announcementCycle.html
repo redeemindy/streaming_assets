@@ -152,10 +152,10 @@
 	}
 
 	announcements.unshift(dateString());
-	if (shouldShowServiceBeginSoon()) {
-		// Insert right after the date (change "1" if you want it elsewhere in the rotation)
-		announcements.splice(1, 0, "The service will begin soon.");
-	}
+
+	// Always include this announcement, but skip it dynamically in the loop when it's no longer valid.
+	var beginSoonIndex = 1;
+	announcements.splice(beginSoonIndex, 0, "The service will begin soon.");
 
 	announcements.forEach((a, i) => {
 		var el = document.createElement("div");
@@ -178,10 +178,21 @@
 	var currentAnnouncement = startingAnnouncement;
 	function loop() {
 		setInterval(() => {
-			var nextAnnouncement = currentAnnouncement + 1;
-			if (nextAnnouncement > elements.length - 1) {
-				nextAnnouncement = 0;
+			var nextAnnouncement = currentAnnouncement;
+
+			// Find the next slide, skipping "begin soon" when it's no longer valid.
+			for (var tries = 0; tries < elements.length; tries++) {
+				nextAnnouncement = nextAnnouncement + 1;
+				if (nextAnnouncement > elements.length - 1) { nextAnnouncement = 0; }
+
+				if (nextAnnouncement != beginSoonIndex || shouldShowServiceBeginSoon()) {
+					break;
+				}
 			}
+
+			// If we didn't actually move, do nothing.
+			if (nextAnnouncement == currentAnnouncement) { return; }
+
 			transition(elements[nextAnnouncement], elements[currentAnnouncement]);
 			currentAnnouncement = nextAnnouncement;
 		}, (secondsHold * 1000));
@@ -420,7 +431,17 @@
 
 	if (!debugMode) {
 		console.log("Looping " + elements.length + " announcements every " + secondsHold + " seconds with a " + transitionSpeed + " second transition, starting with #" + (startingAnnouncement + 1));
-		transition(elements[startingAnnouncement]);
+
+		// If startingAnnouncement is the begin-soon slide and it's not valid, skip it.
+		var initial = startingAnnouncement;
+		for (var tries = 0; tries < elements.length; tries++) {
+			if (initial != beginSoonIndex || shouldShowServiceBeginSoon()) { break; }
+			initial = initial + 1;
+			if (initial > elements.length - 1) { initial = 0; }
+		}
+
+		currentAnnouncement = initial;
+		transition(elements[currentAnnouncement]);
 		loop();
 	} else {
 		console.log("Debug mode! When turned off, " + elements.length + " announcements will loop every " + secondsHold + " seconds with a " + transitionSpeed + " second transition, starting with #" + (startingAnnouncement + 1));
