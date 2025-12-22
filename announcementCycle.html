@@ -94,11 +94,11 @@
 	//announcements.push("<strong>Hope Church of Haughville</strong><br>Support our church plant and the core group!<br>Learn more at <strong>redeemindy.org/churchplants</strong><br>or email <strong>ben.hein@redeemindy.org</strong> to volunteer!");
 
 	announcements.push("Community Life<br>Join in at <strong>redeemindy.org/events</strong>!");
-	announcements.push("<strong>Christmas Eve Services</strong> <br>We will have two services<br> on Christmas Eve at 4:30 & 7 pm.<br> The 4:30PM service will be streamed online.</strong>");
+	//announcements.push("<strong>Christmas Eve Services</strong> <br>We will have two services<br> on Christmas Eve at 4:30 & 7 pm.<br> The 4:30PM service will be streamed online.</strong>");
 
 	//announcements.push("Miss an announcement?<br>Get connected at <strong>redeemindy.org/events</strong>");
 	
-	announcements.push("<strong>Morning Prayer</strong><br>Join us for morning prayer 9-9:30 am<br> this week, Monday through Wednesday.");
+	//announcements.push("<strong>Morning Prayer</strong><br>Join us for morning prayer 9-9:30 am<br> this week, Monday through Wednesday.");
 	//announcements.push("<strong>Morning Prayer</strong><br>Join us on Mondays, Tuesdays, &amp; Thursdays from 8:15-8:45am<br>at the Redeemer offices for community prayer!<br>Let's pray together for God to be at work.");
 	//announcements.push("<strong>Newcomer's Lunch</strong><br><strong>Next Sunday</strong> &bull; 12:30pm<br>New? New-ish?<br>Come to meet people and learn about Redeemer.<br><em>Childcare provided. RSVP for childcare</em><br><em>at <strong>redeemindy.org/events</strong>.</em>");
 	//announcements.push("<strong>Advent Workshop</strong><br>November 9 &bull; 9:30am - 1pm &bull; All ages!<br>An annual Redeemer tradition!<br>Join us as we make this year's Liturgical Art project.<br><em>Art skills not required&mdash;though you may want to wear clothes that can get messy!</em>");
@@ -114,7 +114,7 @@
 	//announcements.push("<strong>Middle School <s>Youth Group</s> Central</strong><br>Tonight &bull; 3-4:30pm &bull; Redeemer<br>Games &bull; Discussions &bull; Friends");
 	//announcements.push("Stay up to date with all of our upcoming events!<br>Visit <strong>redeemindy.org/events</strong>");
 	//announcements.push("<strong>New Hope Counseling</strong><br>Need to share your story, process a recent event,<br>deal with old trauma, or work through a difficult relationship?<br>Consider reaching out to our friends at New Hope Counseling<br><strong>newhopeindianapolis.org</strong>");
-	announcements.push("<strong>Join the Stream Team!</strong><br>We're looking for another camera operator.<br>Email <strong>robertleeanderson@gmail.com</strong> to learn more.<br>");	
+	//announcements.push("<strong>Join the Stream Team!</strong><br>We're looking for another camera operator.<br>Email <strong>robertleeanderson@gmail.com</strong> to learn more.<br>");	
 	
 	//announcements.push(" <strong>First Friday</strong><br>at the Harrison Center &bull; This Friday &bull; 6-9pm<br>Gallery openings, studio visits, and more!<br>Learn more at <strong>harrisoncenter.org</strong>");
 	//announcements.push("<strong>First Friday</strong> Volunteers Needed!<br>This Friday &bull; 6-9pm<br>Help out from 5:45-7:30pm or 7:15-9pm<br>More info or volunteer at<br><strong>harrisoncenter.org/volunteers</strong>");
@@ -127,10 +127,36 @@
 	var transitionSpeed = 0.5;
 	var debugMode = false;
 
+	// Service times (local). Easy to maintain.
+	var normalSundayMorning = "08:30";
+
+	var serviceSchedule = [
+		{ name: "Christmas Eve", when: (day, lit) => (day.getMonth() == 11 && day.getDate() == 24), times: ["16:30"] },
+		{ name: "Ash Wednesday", when: (day, lit) => sameDay(day, lit.ashWed), times: ["18:00"] },
+		{ name: "Good Friday",   when: (day, lit) => sameDay(day, lit.goodFri), times: ["18:00"] },
+		{ name: "Easter Sunday", when: (day, lit) => sameDay(day, lit.easter), times: ["08:00"] },
+
+		// Normal Sunday (skip Easter because it has its own entry above)
+		{ name: "Sunday", when: (day, lit) => (day.getDay() == 0 && !sameDay(day, lit.easter)), times: [normalSundayMorning] }
+	];
+
 	//The magic:
 	var elements = [];
 	var swap = document.getElementById('swap');
+
+	// Keep track of what day the date slide is "about" so the begin-soon logic can match it.
+	var displayedDateInfo = null;
+	function setDisplayed(day, special) {
+		displayedDateInfo = { day: new Date(day.getFullYear(), day.getMonth(), day.getDate()), special: special };
+		return stringifyDate(day, special);
+	}
+
 	announcements.unshift(dateString());
+	if (shouldShowServiceBeginSoon()) {
+		// Insert right after the date (change "1" if you want it elsewhere in the rotation)
+		announcements.splice(1, 0, "The service will begin soon.");
+	}
+
 	announcements.forEach((a, i) => {
 		var el = document.createElement("div");
 		el.id = i;
@@ -161,6 +187,94 @@
 		}, (secondsHold * 1000));
 	}
 
+	function sameDay(a, b) {
+		return a.getFullYear() == b.getFullYear()
+			&& a.getMonth() == b.getMonth()
+			&& a.getDate() == b.getDate();
+	}
+
+	function parseTimeHHMM(t) {
+		var parts = (t || "00:00").split(":");
+		return [parseInt(parts[0], 10) || 0, parseInt(parts[1], 10) || 0];
+	}
+
+	function dateWithTime(day, hhmm) {
+		var hm = parseTimeHHMM(hhmm);
+		return new Date(day.getFullYear(), day.getMonth(), day.getDate(), hm[0], hm[1]);
+	}
+
+	function getLiturgicalDates(year) {
+		var easter = getEaster(year);
+
+		var ashWed = new Date(easter);
+		ashWed.setDate(ashWed.getDate() - 46);
+
+		var palmSun = new Date(easter);
+		palmSun.setDate(palmSun.getDate() - 7);
+
+		var maundyThu = new Date(easter);
+		maundyThu.setDate(maundyThu.getDate() - 3);
+
+		var goodFri = new Date(easter);
+		goodFri.setDate(goodFri.getDate() - 2);
+
+		//Technically Pentecost is 50 days after Easter, but it's celebrated on the Sunday before (so, one day early)
+		var pentecost = new Date(easter);
+		pentecost.setDate(pentecost.getDate() + 49);
+
+		return { ashWed, palmSun, maundyThu, goodFri, easter, pentecost };
+	}
+
+	// Show "service will begin soon" based on the service time for the day that the DATE SLIDE is showing.
+	// (This intentionally keys off the displayed service's time-of-day, even if that displayed day is in the future.)
+	function shouldShowServiceBeginSoon(dateIn) {
+		if (!dateIn) { dateIn = new Date(); } else { dateIn = new Date(dateIn); }
+
+		// Ensure displayedDateInfo is set (dateString() is already called above, but keep this safe).
+		if (!displayedDateInfo) { dateString(dateIn); }
+
+		if (!displayedDateInfo || !displayedDateInfo.day) { return false; }
+
+		var shownDay = displayedDateInfo.day; // the day the date slide is "about"
+		var lit = getLiturgicalDates(shownDay.getFullYear());
+
+		// Get the configured start time(s) for that shown day.
+		var times = [];
+		serviceSchedule.forEach(s => {
+			if (s.when(shownDay, lit)) {
+				s.times.forEach(t => times.push(t));
+			}
+		});
+		if (!times.length) { return false; }
+
+		// Apply those times to TODAY's date, then use your rule: before start, and not >20 minutes after.
+		var anchorDay = new Date(dateIn.getFullYear(), dateIn.getMonth(), dateIn.getDate());
+		var graceMs = 20 * 60 * 1000;
+
+		return times.some(t => {
+			var start = dateWithTime(anchorDay, t);
+			return (dateIn <= new Date(start.getTime() + graceMs));
+		});
+	}
+
+	// Returns the scheduled service start times for the given date.
+	function serviceStartsForDate(dateIn) {
+		var day = new Date(dateIn);
+		day = new Date(day.getFullYear(), day.getMonth(), day.getDate()); // normalize to midnight
+
+		var lit = getLiturgicalDates(day.getFullYear());
+		var starts = [];
+
+		serviceSchedule.forEach(s => {
+			if (s.when(day, lit)) {
+				s.times.forEach(t => starts.push(dateWithTime(day, t)));
+			}
+		});
+
+		starts.sort((a, b) => a - b);
+		return starts;
+	}
+
 	function dateString(dateIn) {
 		if (!dateIn) { dateIn = new Date(); } else { dateIn = new Date(dateIn); }
 		var soonestSunday = soonestDayOfWeek(dateIn, "Sunday");
@@ -168,92 +282,87 @@
 
 		//is it Advent? (Advent can't fall earlier than 11/27 or later than 12/24)
 		if ((soonestSunday.getMonth() == 11 - 1 && soonestSunday.getDate() >= 27) || (soonestSunday.getMonth() == 12 - 1 && soonestSunday.getDate() <= 23)){
-			return stringifyDate(soonestSunday, "Advent");
+			return setDisplayed(soonestSunday, "Advent");
 		}
 
 		//is it Christmas or Christmas Eve?
 		if (dateIn.getMonth() == 12 - 1) { 
 			if (dateIn.getDate() <= 24 && 24 <= soonestSunday.getDate()){ //next event is Christmas Eve
-				return stringifyDate(new Date(dateIn.getFullYear(), 12 - 1, 24), "Christmas Eve"); 
+				return setDisplayed(new Date(dateIn.getFullYear(), 12 - 1, 24), "Christmas Eve"); 
 			}
 			if (dateIn.getDate() == 25){ //technically this isn't exactly right, but this is only going to be relevant on Christmas Day itself; and honestly if you're looking at this on Christmas and you're NOT streaming, go home! Be with your family!
-				return stringifyDate(dateIn, "Christmas");
+				return setDisplayed(dateIn, "Christmas");
 			}
 		}
 
 		//is it Christmastide? (for our purposes Christmastide is between December 25 and Epiphany, which falls on the first Sunday after January 1--but never *ON* January 1)
 		if((soonestSunday.getMonth() == 12 - 1 && soonestSunday.getDate() > 25) || (soonestSunday.getMonth() == 1 - 1 && soonestSunday.getDate() <= 1)){
-			return stringifyDate(soonestSunday, "Christmastide");
+			return setDisplayed(soonestSunday, "Christmastide");
 		}
 
 		//is it Epiphany? (for our purposes Epiphany is the first Sunday after January 1 that isn't January 1; meaning that it has to fall on 1/2 through 1/8)
 		if(soonestSunday.getMonth() == 1 - 1 && soonestSunday.getDate() >= 2 && soonestSunday.getDate() <= 8){
-			return stringifyDate(soonestSunday, "Epiphany");
+			return setDisplayed(soonestSunday, "Epiphany");
 		}
 
 		//Lent, Holy Week, Easter, and Pentecost:
-		var ashWed = getEaster(dateIn.getFullYear());
-		ashWed.setDate(ashWed.getDate() - 46);
-		var palmSun = getEaster(dateIn.getFullYear());
-		palmSun.setDate(palmSun.getDate() - 7);
-		var maundyThu = getEaster(dateIn.getFullYear());
-		maundyThu.setDate(maundyThu.getDate() - 3);
-		var goodFri = getEaster(dateIn.getFullYear());
-		goodFri.setDate(goodFri.getDate() - 2);
-		var easter = getEaster(dateIn.getFullYear());
-		//Technically Pentecost is 50 days after Easter, but it's celebrated on the Sunday before (so, one day early)
-		var pentecost = getEaster(dateIn.getFullYear());
-		pentecost.setDate(pentecost.getDate() + 49);
+		var lit = getLiturgicalDates(dateIn.getFullYear());
+		var ashWed = lit.ashWed;
+		var palmSun = lit.palmSun;
+		var maundyThu = lit.maundyThu;
+		var goodFri = lit.goodFri;
+		var easter = lit.easter;
+		var pentecost = lit.pentecost;
 
 		//is it Ash Wednesday? (46 days before Easter)
 		if (ashWed.toISOString().split("T")[0] <= soonestSunday.toISOString().split("T")[0] && dateIn.toISOString().split("T")[0] <= ashWed.toISOString().split("T")[0]){
-			return stringifyDate(ashWed, "Ash Wednesday");
+			return setDisplayed(ashWed, "Ash Wednesday");
 		}
 
 		//is it Lent? (between Ash Wednesday and Palm Sunday)
 		if (ashWed.toISOString().split("T")[0] <= soonestSunday.toISOString().split("T")[0] && soonestSunday.toISOString().split("T")[0] < palmSun.toISOString().split("T")[0]){
-			return stringifyDate(soonestSunday, "Lent");
+			return setDisplayed(soonestSunday, "Lent");
 		}
 
 		//is it Palm Sunday? (Sun before Easter)
 		if (soonestSunday.toISOString().split("T")[0] == palmSun.toISOString().split("T")[0]) {
-			return stringifyDate(palmSun, "Palm Sunday");
+			return setDisplayed(palmSun, "Palm Sunday");
 		}
 
 		//is it Mon-Tue-Wed of Holy Week? (we don't usually stream this)
 		if (soonestSunday.toISOString().split("T")[0] > maundyThu.toISOString().split("T")[0] && dateIn.toISOString().split("T")[0] < maundyThu.toISOString().split("T")[0]) {
-			return stringifyDate(dateIn, "Holy Week");
+			return setDisplayed(dateIn, "Holy Week");
 		}
 
 		//is it Maundy Thursday? (Thurs before Easter)
 		//(we don't usually do a Maundy Thursday stream either)
 		if (dateIn.toISOString().split("T")[0] == maundyThu.toISOString().split("T")[0]) {
-			return stringifyDate(maundyThu, "Maundy Thursday");
+			return setDisplayed(maundyThu, "Maundy Thursday");
 		}
 
 		//is it Good Friday? (Fri before Easter)
 		if(dateIn.toISOString().split("T")[0] == goodFri.toISOString().split("T")[0]) {
-			return stringifyDate(goodFri, "Good Friday");
+			return setDisplayed(goodFri, "Good Friday");
 		}
 
 		//is it Easter Sunday?
 		if(soonestSunday.toISOString().split("T")[0] == easter.toISOString().split("T")[0]) {
 			//if you want to call it "Resurrection Sunday," just change "Easter" in the line below
-			return stringifyDate(soonestSunday, "Easter Sunday");
+			return setDisplayed(soonestSunday, "Easter Sunday");
 		}
 
 		//is it Eastertide? (50 days after Easter, until Pentecost)
 		if(soonestSunday.toISOString().split("T")[0] > easter.toISOString().split("T")[0] && soonestSunday.toISOString().split("T")[0] < pentecost.toISOString().split("T")[0]) {
-			return stringifyDate(soonestSunday, "Eastertide");
+			return setDisplayed(soonestSunday, "Eastertide");
 		}
 
 		//is it Pentecost?
 		if(soonestSunday.toISOString().split("T")[0] == pentecost.toISOString().split("T")[0]) {
-			return stringifyDate(soonestSunday, "Pentecost");
+			return setDisplayed(soonestSunday, "Pentecost");
 		}
 
 		//just a normal Sunday, then ("Ordinary Time")
-		return stringifyDate(soonestSunday);
+		return setDisplayed(soonestSunday);
 	}
 
 	function stringifyDate(day, special){
